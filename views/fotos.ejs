@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .custom-table {
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .custom-table th {
+      background-color: #320808;
+      color: #fff;
+    }
+
+    .custom-table td,
+    .custom-table th {
+      vertical-align: middle;
+    }
+
+    .img-preview {
+      width: 100px;
+      height: auto;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <div class="container my-5">
+    <h1 class="text-center mb-4 text-primary fw-bold">
+      <%= title %>
+    </h1>
+
+    <div class="table-responsive">
+      <table class="table custom-table text-center align-middle">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Calificación</th>
+            <th>Imagen</th>
+            <th>Fecha de creación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% arrFotos.forEach(foto=> { %>
+            <tr>
+              <td>
+                <%= foto.id %>
+              </td>
+              <td class="fw-semibold text-primary">
+                <%= foto.titulo %>
+              </td>
+              <td class="text-muted">
+                <%= foto.descripcion %>
+              </td>
+              <td><span class="badge bg-success fs-6">
+                  <%= foto.calification %>
+                </span></td>
+              <td><img src="/<%= foto.ruta.replace('public/', '') %>" alt="Foto" class="img-preview"></td>
+              <td>
+                <%= new Date(foto.createdAt).toLocaleDateString() %>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
