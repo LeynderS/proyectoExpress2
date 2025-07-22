@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .img-container {
+      text-align: center;
+    }
+
+    .img-container img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <div class="container my-5">
+    <h1 class="text-center text-primary fw-bold mb-4">
+      <%= title %>
+    </h1>
+
+    <div class="card shadow p-4">
+      <div class="img-container">
+        <img src="/<%= foto.ruta.replace('public/', '') %>" alt="<%= foto.ruta %>">
+      </div>
+
+      <h3 class="text-secondary fw-semibold">
+        <%= foto.titulo %>
+      </h3>
+      <p class="text-muted">
+        <%= foto.descripcion %>
+      </p>
+
+      <p><strong>Calificación:</strong> <span class="badge bg-success">
+          <%= foto.calification %>
+        </span></p>
+      <p><strong>Fecha de creación:</strong>
+        <%= new Date(foto.createdAt).toLocaleDateString() %>
+      </p>
+
+      <p><strong>Etiquetas:</strong>
+        <% if (foto.etiqueta && foto.etiqueta.length> 0) { %>
+          <% foto.etiqueta.forEach(et=> { %>
+            <span class="badge bg-secondary">
+              <%= et.texto %>
+            </span>
+            <% }) %>
+              <% } else { %>
+                <span class="text-muted">Sin etiquetas</span>
+                <% } %>
+      </p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
